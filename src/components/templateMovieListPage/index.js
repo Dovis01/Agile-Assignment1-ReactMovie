@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import Header from "../headerMovieList";
 import FilterCard from "../filterMoviesCard";
 import MovieList from "../movieList";
 import Grid from "@mui/material/Grid";
 
-function MovieListPageTemplate({ movies, title, action }) {
+function MovieListPageTemplate({movies, title, action, avatarCheck}) {
     const [nameFilter, setNameFilter] = useState("");
     const [genreFilter, setGenreFilter] = useState("0");
     const genreId = Number(genreFilter);
@@ -23,9 +23,10 @@ function MovieListPageTemplate({ movies, title, action }) {
     };
 
     return (
-        <Grid container sx={{ padding: '20px' }}>
-            <Grid item xs={12} >
-                <Header title={title} />
+
+        <Grid container sx={{padding: '20px'}} >
+            <Grid item xs={12}>
+                <Header title={title}/>
             </Grid>
             <Grid item container spacing={5}>
                 <Grid key="find" item xs={12} sm={6} md={4} lg={3} xl={2}>
@@ -35,9 +36,10 @@ function MovieListPageTemplate({ movies, title, action }) {
                         genreFilter={genreFilter}
                     />
                 </Grid>
-                <MovieList action={action} movies={displayedMovies}></MovieList>
+                <MovieList action={action} movies={displayedMovies} avatarCheck={avatarCheck}></MovieList>
             </Grid>
         </Grid>
     );
 }
+
 export default MovieListPageTemplate;
