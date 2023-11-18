@@ -11,6 +11,8 @@ import {useNavigate} from "react-router-dom";
 import {styled} from '@mui/material/styles';
 import {useTheme} from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import colorTheme from "../../theme/adjustColor";
+import {ThemeProvider} from '@mui/material/styles';
 
 
 const Offset = styled('div')(({theme}) => theme.mixins.toolbar);
@@ -39,6 +41,7 @@ const SiteHeader = () => {
 
     return (
         <>
+            <ThemeProvider theme={colorTheme}>
                 <AppBar position="fixed" color="primary" elevation={8} sx={{padding:0.75}}>
                     <Toolbar>
                         <Typography variant="h4" sx={{flexGrow: 1}}>
@@ -99,6 +102,7 @@ const SiteHeader = () => {
                     </Toolbar>
                 </AppBar>
                 <Offset/>
+            </ThemeProvider>
         </>
     );
 };

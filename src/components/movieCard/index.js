@@ -11,12 +11,12 @@ import StarRateIcon from "@mui/icons-material/StarRate";
 import Grid from "@mui/material/Grid";
 import img from '../../images/film-poster-placeholder.png'
 import {Link} from "react-router-dom";
-
+import backgroundImageStyles from "../../theme/background";
 
 export default function MovieCard({ movie, action ,avatarCheck}) {
 
     return (
-        <Card sx={{ maxWidth: 345 }} elevation={5} >
+        <Card sx={{maxWidth: 345}} elevation={5} style={backgroundImageStyles.backgroundCardContainer}>
             <CardHeader
                 avatar={
                     avatarCheck(movie)
