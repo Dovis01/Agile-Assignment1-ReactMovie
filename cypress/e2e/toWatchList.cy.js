@@ -43,6 +43,10 @@ describe("The toWatchList feature", () => {
                 .find("p")
                 .contains(movies[3].title);
         });
-        it("removes deleted movies", () => {});
+        it("removes selected movies from ToWatchList Page", () => {
+            cy.get("button[aria-label='remove from watch list']").eq(0).click();
+            cy.get("button[aria-label='remove from watch list']").eq(0).click();
+            cy.get(".MuiCardHeader-content").should("have.length", 0);
+        });
     });
 });

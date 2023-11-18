@@ -3,6 +3,7 @@ import Header from "../headerMovieList";
 import FilterCard from "../filterMoviesCard";
 import MovieList from "../movieList";
 import Grid from "@mui/material/Grid";
+import backgroundImageStyles from "../../theme/background";
 
 function MovieListPageTemplate({movies, title, action, avatarCheck}) {
     const [nameFilter, setNameFilter] = useState("");
@@ -24,7 +25,7 @@ function MovieListPageTemplate({movies, title, action, avatarCheck}) {
 
     return (
 
-        <Grid container sx={{padding: '20px'}} >
+        <Grid container sx={{padding: '20px'}} style={backgroundImageStyles.backgroundMainContainer}>
             <Grid item xs={12}>
                 <Header title={title}/>
             </Grid>
