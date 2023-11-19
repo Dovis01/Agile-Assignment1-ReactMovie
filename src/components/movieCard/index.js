@@ -8,12 +8,14 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import CalendarIcon from "@mui/icons-material/CalendarTodayTwoTone";
 import StarRateIcon from "@mui/icons-material/StarRate";
+import StackedLineChartIcon from '@mui/icons-material/StackedLineChart';
 import Grid from "@mui/material/Grid";
 import img from '../../images/film-poster-placeholder.png'
 import {Link} from "react-router-dom";
 import backgroundImageStyles from "../../theme/background";
+import Box from "@mui/material/Box";
 
-export default function MovieCard({ movie, action ,avatarCheck}) {
+export default function MovieCard({movie, action, avatarCheck}) {
 
     return (
         <Card sx={{maxWidth: 345}} elevation={5} style={backgroundImageStyles.backgroundCardContainer}>
@@ -28,7 +30,7 @@ export default function MovieCard({ movie, action ,avatarCheck}) {
                 }
             />
             <CardMedia
-                sx={{ height: 500 }}
+                sx={{height: 500}}
                 image={
                     movie.poster_path
                         ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
@@ -38,15 +40,25 @@ export default function MovieCard({ movie, action ,avatarCheck}) {
             <CardContent>
                 <Grid container>
                     <Grid item xs={6}>
-                        <Typography variant="h6" component="p">
-                            <CalendarIcon fontSize="small" />
+                        <Typography variant="h6" component="p" style={{whiteSpace: 'nowrap'}}>
+                            <CalendarIcon fontSize="small"/>
                             {movie.release_date}
                         </Typography>
                     </Grid>
                     <Grid item xs={6}>
+                        <Typography variant="h6" component="p" style={{whiteSpace: 'nowrap'}}>
+                            <Box component="span" ml={3}>
+                                <StackedLineChartIcon fontSize="medium"/>
+                                {" "} {movie.popularity.toFixed(2)}{" "}
+                            </Box>
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={6}>
                         <Typography variant="h6" component="p">
-                            <StarRateIcon fontSize="small" />
-                            {"  "} {movie.vote_average}{" "}
+                            <Box component="span" ml={1}>
+                                <StarRateIcon fontSize="small"/>
+                                {" "} {movie.vote_average.toFixed(1)}{" "}
+                            </Box>
                         </Typography>
                     </Grid>
                 </Grid>

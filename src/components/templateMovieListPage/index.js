@@ -4,8 +4,11 @@ import FilterCard from "../filterMoviesCard";
 import MovieList from "../movieList";
 import Grid from "@mui/material/Grid";
 import backgroundImageStyles from "../../theme/background";
+import Paper from "@mui/material/Paper";
+import {Pagination, Stack} from "@mui/material";
 
-function MovieListPageTemplate({movies, title, action, avatarCheck}) {
+
+function MovieListPageTemplate({movies, title, action, avatarCheck, pageChange, currentPage,totalPages}) {
     const [nameFilter, setNameFilter] = useState("");
     const [genreFilter, setGenreFilter] = useState("0");
     const genreId = Number(genreFilter);
@@ -24,7 +27,6 @@ function MovieListPageTemplate({movies, title, action, avatarCheck}) {
     };
 
     return (
-
         <Grid container sx={{padding: '20px'}} style={backgroundImageStyles.backgroundMainContainer}>
             <Grid item xs={12}>
                 <Header title={title}/>
@@ -39,6 +41,24 @@ function MovieListPageTemplate({movies, title, action, avatarCheck}) {
                 </Grid>
                 <MovieList action={action} movies={displayedMovies} avatarCheck={avatarCheck}></MovieList>
             </Grid>
+            <Paper
+                elevation={5}
+                component="div"
+                sx={{
+                    display: "flex",
+                    marginTop: 7.4,
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    zIndex: 1000,
+                    position: 'relative',
+                    padding: 1.1,
+                }}
+            >
+                <Stack spacing={2}>
+                    <Pagination count={totalPages} page={currentPage} onChange={pageChange} variant="outlined"
+                                shape="rounded" size="large" boundaryCount={2} showFirstButton showLastButton/>
+                </Stack>
+            </Paper>
         </Grid>
     );
 }

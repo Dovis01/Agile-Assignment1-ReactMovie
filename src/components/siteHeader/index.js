@@ -32,7 +32,7 @@ const SiteHeader = () => {
     ];
 
     const handleMenuSelect = (pageURL) => {
-        navigate(pageURL, {replace: true});
+        navigate(pageURL);
     };
 
     const handleMenu = (event) => {

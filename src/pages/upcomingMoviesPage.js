@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {getUpcomingMovies} from "../api/tmdb-api";
 import PageTemplate from "../components/templateMovieListPage";
 import AddToFavorites from "../components/cardIconAndAvatar/icons/addToFavorites";
@@ -9,9 +9,10 @@ import AvatarFavoriteCheck from "../components/cardIconAndAvatar/avatar/favorite
 import AvatarToWatchListCheck from "../components/cardIconAndAvatar/avatar/toWatchListCheck";
 
 const UpcomingMoviesPage = () => {
+    const [currentPage, setCurrentPage] = useState(1);
     //have done for using react-query
     const {data, error, isLoading, isError} = useQuery(
-        "upcoming",
+        ["upcoming",{page:currentPage}],
         getUpcomingMovies
     );
 
@@ -24,11 +25,17 @@ const UpcomingMoviesPage = () => {
     }
 
     const movies = data.results;
+    const totalPages = data.total_pages;
 
     return (
         <PageTemplate
             title="Upcoming Movies"
             movies={movies}
+            currentPage={currentPage}
+            totalPages={totalPages}
+            pageChange={(event, value) => {
+                setCurrentPage(value);
+            }}
             action={(movie) => {
                 return (
                     <>
