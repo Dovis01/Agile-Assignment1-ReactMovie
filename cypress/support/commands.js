@@ -41,7 +41,14 @@ Cypress.Commands.add('testListPageByPage', (pageTitle, page) => {
 //
 // -- This is a dual command --
 // Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
+Cypress.Commands.add('assertCheckCardNumberLength', { prevSubject: 'optional' }, (subject, expectedLength) => {
+    if (subject) {
+        cy.wrap(subject).should("have.length", expectedLength);
+    } else {
+        cy.get(".MuiCardHeader-content").should("have.length", expectedLength);
+    }
+});
+
+
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
