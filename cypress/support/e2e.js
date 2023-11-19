@@ -21,6 +21,21 @@ import './commands'
 
 export const filterByTitle = (movieList, string) =>
     movieList.filter((m) => m.title.toLowerCase().search(string) !== -1);
-
 export const filterByGenre = (movieList, genreId) =>
     movieList.filter((m) => m.genre_ids.includes(genreId));
+export const filterByYear = (movieList, releaseYear) =>
+    movieList.filter(m => m.release_date.substring(0, 4).includes(releaseYear))
+export const checkSorting = (selector, order) => {
+    let values = [];
+    cy.get('.MuiCardContent-root').find(selector).each(($elem) => {
+        const numericValue = parseFloat($elem.text().trim());
+        values.push(numericValue);
+    }).then(() => {
+        let isSorted = order === 'asc'
+            ? values.slice(1).every((val, i) => val >= values[i])
+            : values.slice(1).every((val, i) => val <= values[i]);
+
+        console.log('Is sorted:', isSorted);
+        expect(isSorted).to.be.true;
+    });
+};
