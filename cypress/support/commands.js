@@ -11,8 +11,14 @@
 //
 // -- This is a parent command --
 // Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
+Cypress.Commands.add('testListPage', (pageTitle, content) => {
+    cy.get("h3").contains(pageTitle);
+    cy.get(".MuiCardHeader-root").should("have.length", 20);
+    cy.get(".MuiCardHeader-content").each(($card, index) => {
+        cy.wrap($card).find("p").contains(content[index].title);
+    });
+});
+
 // -- This is a child command --
 // Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
 //
