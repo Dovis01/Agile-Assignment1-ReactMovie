@@ -27,7 +27,6 @@ const MoviesContextProvider = (props) => {
             newWatchList = [...toWatchList];
         }
         setToWatchList(newWatchList);
-        console.log(newWatchList);
     };
 
     // We will use this function in a later section

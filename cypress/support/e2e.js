@@ -34,8 +34,6 @@ export const checkSorting = (selector, order) => {
         let isSorted = order === 'asc'
             ? values.slice(1).every((val, i) => val >= values[i])
             : values.slice(1).every((val, i) => val <= values[i]);
-
-        console.log('Is sorted:', isSorted);
         expect(isSorted).to.be.true;
     });
 };
