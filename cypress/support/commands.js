@@ -19,6 +19,11 @@ Cypress.Commands.add('testListPage', (pageTitle, content) => {
     });
 });
 
+Cypress.Commands.add('testAllCardHeaderContent', ( content) => {
+    cy.get(".MuiCardHeader-content").each(($card, index) => {
+        cy.wrap($card).find("p").contains(content[index].title);
+    });
+});
 
 Cypress.Commands.add('testListPageByPage', (pageTitle, page) => {
     let movies;
