@@ -20,7 +20,7 @@ describe("The writing a review for a movie feature", () => {
     });
 
     describe("The jump to writing reviews form page", () => {
-        it("selected writing reviews button and link to review form page", () => {
+        it("Should select writing reviews button and link to review form page", () => {
             cy.get('a [data-testid="RateReviewIcon"]').click();
             cy.url().should('include', `/reviews/form`);
         });
@@ -30,7 +30,8 @@ describe("The writing a review for a movie feature", () => {
         beforeEach(() => {
             cy.get('a [data-testid="RateReviewIcon"]').click();
         });
-        it('User can submit reviews successfully', () => {
+
+        it('Should user be able to submit reviews successfully', () => {
             cy.get('input#author').type('Zhang San');
             cy.get('textarea#review').type('This ia a test review.');
             cy.get('div#select-rating').click();
@@ -39,7 +40,28 @@ describe("The writing a review for a movie feature", () => {
             cy.get('.MuiAlert-message').should('contain', 'Thank you for submitting a review');
             cy.get('.MuiAlert-message').should('be.visible');
         });
-        it('User can not submit due to the lack of information ', () => {
+
+        it('Should user be not able to submit due to the lack of information on author ', () => {
+            cy.get('input#author').clear();
+            cy.get('textarea#review').type('This ia a test review.');
+            cy.get('div#select-rating').click();
+            cy.get('li').contains('Average').click();
+            cy.get('button[type="submit"]').click();
+            cy.get('.MuiAlert-message').should('not.exist');
+            cy.get('p').contains('Name is required').should('be.visible');
+        });
+
+        it('Should user be not able to submit due to the lack of information on review text ', () => {
+            cy.get('input#author').type('Zhang San');
+            cy.get('textarea#review').clear();
+            cy.get('div#select-rating').click();
+            cy.get('li').contains('Average').click();
+            cy.get('button[type="submit"]').click();
+            cy.get('.MuiAlert-message').should('not.exist');
+            cy.get('p').contains('Review cannot be empty.').should('be.visible');
+        });
+
+        it('Should user be not able to submit due to the lack of information on both ', () => {
             cy.get('input#author').clear();
             cy.get('textarea#review').clear();
             cy.get('div#select-rating').click();
@@ -47,7 +69,17 @@ describe("The writing a review for a movie feature", () => {
             cy.get('button[type="submit"]').click();
             cy.get('.MuiAlert-message').should('not.exist');
             cy.get('p').contains('Name is required').should('be.visible');
-            cy.get('p').contains('Review cannot be empty').should('be.visible');
+            cy.get('p').contains('Review cannot be empty.').should('be.visible');
+        });
+
+        it('Should user be not able to submit due to the short information on review text', () => {
+            cy.get('input#author').type('Zhang San');
+            cy.get('textarea#review').type('123');
+            cy.get('div#select-rating').click();
+            cy.get('li').contains('Average').click();
+            cy.get('button[type="submit"]').click();
+            cy.get('.MuiAlert-message').should('not.exist');
+            cy.get('p').contains('Review is too short').should('be.visible');
         });
     });
 });
