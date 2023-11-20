@@ -19,6 +19,14 @@ Cypress.Commands.add('testListPage', (pageTitle, content) => {
     });
 });
 
+Cypress.Commands.add('testActorListPage', (pageTitle, content) => {
+    cy.get("h3").contains(pageTitle);
+    cy.get(".MuiCardHeader-root").should("have.length", 20);
+    cy.get(".MuiCardHeader-content").each(($card, index) => {
+        cy.wrap($card).find("p").contains(content[index].name);
+    });
+});
+
 Cypress.Commands.add('testAllCardHeaderContent', ( content) => {
     cy.get(".MuiCardHeader-content").each(($card, index) => {
         cy.wrap($card).find("p").contains(content[index].title);
