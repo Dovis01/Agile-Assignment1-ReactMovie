@@ -33,13 +33,15 @@ const App = () => {
                 <MoviesContextProvider>
                     <Routes>
                         <Route path="/people/popular" element={ <PopularPeoplePage /> } />
-                        <Route path="/people/popular/:id" element={ <PeopleDetailsPage /> } />
+                        <Route path="/people/popular/:actorId" element={<PeopleDetailsPage/>}/>
+                        <Route path="/movie/:movieId/people/popular/:actorId" element={<PeopleDetailsPage/>}/>
                         <Route path="/movies/favorites" element={<FavoriteMoviesPage />} />
                         <Route path="/reviews/form" element={ <AddMovieReviewPage /> } />
                         <Route path="/movies/upcoming" element={<UpcomingMoviesPage />} />
                         <Route path="/movies/watchlist" element={<ToWatchMoviesListPage />} />
                         <Route path="/reviews/:id" element={ <MovieReviewPage /> } />
-                        <Route path="/movies/:id" element={<MoviePage />} />
+                        <Route path="/movies/:movieId" element={<MoviePage/>}/>
+                        <Route path="/people/popular/:actorId/movies/:movieId" element={<MoviePage/>}/>
                         <Route path="/" element={<HomePage />} />
                         <Route path="*" element={ <Navigate to="/" /> } />
                     </Routes>
