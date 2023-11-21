@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {lazy, Suspense, useState} from "react";
 import Chip from "@mui/material/Chip";
 import Paper from "@mui/material/Paper";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
@@ -8,7 +8,8 @@ import NavigationIcon from "@mui/icons-material/Navigation";
 import Fab from "@mui/material/Fab";
 import Typography from "@mui/material/Typography";
 import Drawer from "@mui/material/Drawer";
-import MovieReviews from "../movieReviews"
+
+const MovieReviews = lazy(() => import("../movieReviews"));
 
 
 const root = {
@@ -19,9 +20,9 @@ const root = {
     padding: 1.5,
     margin: 0,
 };
-const chip = { margin: 0.5 };
+const chip = {margin: 0.5};
 
-const MovieDetails = ({ movie }) => {
+const MovieDetails = ({movie}) => {
     const [drawerOpen, setDrawerOpen] = useState(false);
 
     return (
@@ -39,53 +40,55 @@ const MovieDetails = ({ movie }) => {
                 sx={{...root}}
             >
                 <li>
-                    <Chip label="Genres" sx={{...chip}} color="primary" />
+                    <Chip label="Genres" sx={{...chip}} color="primary"/>
                 </li>
                 {movie.genres.map((g) => (
                     <li key={g.name}>
-                        <Chip label={g.name} sx={{...chip}} />
+                        <Chip label={g.name} sx={{...chip}}/>
                     </li>
                 ))}
             </Paper>
             <Paper component="ul" sx={{...root}}>
-                <Chip icon={<AccessTimeIcon />} label={`${movie.runtime} min.`} />
+                <Chip icon={<AccessTimeIcon/>} label={`${movie.runtime} min.`}/>
                 <Chip
-                    icon={<MonetizationIcon />}
+                    icon={<MonetizationIcon/>}
                     label={`${movie.revenue.toLocaleString()}`}
                 />
                 <Chip
-                    icon={<StarRate />}
+                    icon={<StarRate/>}
                     label={`${movie.vote_average} (${movie.vote_count}`}
                 />
-                <Chip label={`Released: ${movie.release_date}`} />
+                <Chip label={`Released: ${movie.release_date}`}/>
             </Paper>
             <Paper component="ul" sx={{...root}}>
                 <li>
-                    <Chip label="Production Countries" sx={{...chip}} color="primary" />
+                    <Chip label="Production Countries" sx={{...chip}} color="primary"/>
                 </li>
                 {movie.production_countries.map((country) => (
                     <li key={country.name}>
-                        <Chip label={country.name} sx={{...chip}} />
+                        <Chip label={country.name} sx={{...chip}}/>
                     </li>
                 ))}
             </Paper>
             <Fab
                 color="secondary"
                 variant="extended"
-                onClick={() =>setDrawerOpen(true)}
+                onClick={() => setDrawerOpen(true)}
                 sx={{
                     position: 'fixed',
                     bottom: '1em',
                     right: '1em'
                 }}
             >
-                <NavigationIcon />
+                <NavigationIcon/>
                 Reviews
             </Fab>
             <Drawer anchor="top" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
-                <MovieReviews movie={movie} />
+                <Suspense fallback={<h1>Loading page</h1>}>
+                    <MovieReviews movie={movie}/>
+                </Suspense>
             </Drawer>
         </>
     );
 };
-export default MovieDetails ;
+export default MovieDetails;
