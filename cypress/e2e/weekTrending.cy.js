@@ -24,8 +24,7 @@ describe("The week trending movies page tests", () => {
         });
 
         it("should jump to movie details page by button from week trending movies page", () => {
-            cy.get("button.MuiButton-outlined").contains("More Info ...").eq(0).click();
-            cy.url().should("include", `/movies/${movies[0].id}`);
+            cy.testNavigationToDetailPage("movies",movies[0].id);
         });
     });
 

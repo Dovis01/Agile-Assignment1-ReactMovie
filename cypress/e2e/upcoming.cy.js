@@ -18,16 +18,14 @@ describe("The upcoming movies page tests", () => {
     });
 
     describe("The content of upcoming page test", () => {
-        it("displays the page header and 20 movies", () => {
-            cy.get("h3").contains("Upcoming Movies");
-            cy.get(".MuiCardHeader-root").should("have.length", 20);
+        it("should display the page header, 20 movies and the correct movie cards' title", () => {
+            cy.testListPage("Upcoming Movies", movies);
         });
 
-        it("displays the correct movie titles", () => {
-            cy.get(".MuiCardHeader-content").each(($card, index) => {
-                cy.wrap($card).find("p").contains(movies[index].title);
-            });
+        it("should jump to movie details page by button from upcoming movies page", () => {
+            cy.testNavigationToDetailPage("movies",movies[0].id);
         });
+
     });
     describe("The upcoming movie details page", () => {
         before(() => {
