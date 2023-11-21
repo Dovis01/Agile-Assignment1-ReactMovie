@@ -11,6 +11,12 @@
 //
 // -- This is a parent command --
 // Cypress.Commands.add('login', (email, password) => { ... })
+
+Cypress.Commands.add('testNavigationToDetailPage', (urlType,detailId ) => {
+    cy.get("button.MuiButton-outlined").contains("More Info ...").eq(0).click();
+    cy.url().should("include", `/${urlType}/${detailId}`);
+});
+
 Cypress.Commands.add('testListPage', (pageTitle, content) => {
     cy.get("h3").contains(pageTitle);
     cy.get(".MuiCardHeader-root").should("have.length", 20);
