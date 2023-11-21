@@ -42,7 +42,7 @@ describe("New filtering and sorting", () => {
         });
 
         it('should return results for a past year', () => {
-            const releaseYear = "2004";
+            const releaseYear = "2022";
             const matchingMovies = filterByYear(movies, releaseYear);
             cy.get('#release-year-search').clear().type(releaseYear);
             cy.assertCheckCardNumberLength(matchingMovies.length);

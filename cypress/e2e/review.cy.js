@@ -58,7 +58,7 @@ describe("The movie review feature", () => {
                 cy.get("h3").contains(movie.title);
                 cy.get("h3").contains("Review By:");
                 cy.get("h3").contains(reviews[0].author);
-                cy.get("h3").next().contains(reviews[0].content);
+                cy.get("p.MuiTypography-root.MuiTypography-h6").should("contain.text",reviews[0].content);
             });
         });
     });

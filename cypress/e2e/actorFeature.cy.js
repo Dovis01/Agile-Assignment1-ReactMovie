@@ -35,7 +35,7 @@ describe("The actor related page tests", () => {
         before(() => {
             cy.request(
                 `https://api.themoviedb.org/3/person/${
-                    actors[7].id
+                    actors[5].id
                 }?api_key=${Cypress.env("TMDB_KEY")}`
             )
                 .its("body")
@@ -44,7 +44,7 @@ describe("The actor related page tests", () => {
                 });
             cy.request(
                 `https://api.themoviedb.org/3/person/${
-                    actors[7].id
+                    actors[5].id
                 }/movie_credits?api_key=${Cypress.env("TMDB_KEY")}`
             )
                 .its("body")
@@ -53,7 +53,7 @@ describe("The actor related page tests", () => {
                 });
             cy.request(
                 `https://api.themoviedb.org/3/person/${
-                    actors[7].id
+                    actors[5].id
                 }/tv_credits?api_key=${Cypress.env("TMDB_KEY")}`
             )
                 .its("body")
@@ -62,7 +62,7 @@ describe("The actor related page tests", () => {
                 });
         });
         beforeEach(() => {
-            cy.visit(`/people/popular/${actors[7].id}`);
+            cy.visit(`/people/popular/${actors[5].id}`);
         });
 
         it(" should display the actor name, known for department and overview", () => {
