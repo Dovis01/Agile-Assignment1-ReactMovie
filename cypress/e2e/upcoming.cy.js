@@ -25,8 +25,29 @@ describe("The upcoming movies page tests", () => {
         it("should jump to movie details page by button from upcoming movies page", () => {
             cy.testNavigationToDetailPage("movies",movies[0].id);
         });
-
     });
+
+    describe("The selected icon button and avatar presentation for upcoming movie card test", () => {
+        it("should movie card selected to favorites shows the red heart", () => {
+            cy.get(".MuiCardHeader-root").eq(1).find("svg[data-testid='FavoriteIcon']").should("not.exist");
+            cy.get("button[aria-label='add to favorites']").eq(1).click();
+            cy.get(".MuiCardHeader-root").eq(1).find("svg[data-testid='FavoriteIcon']").should("exist");
+        });
+        it("should movie card selected to watch list shows the green avatar", () => {
+            cy.get(".MuiCardHeader-root").eq(1).find("svg[data-testid='PlaylistAddCheckIcon']").should("not.exist");
+            cy.get("button[aria-label='add to watch']").eq(1).click();
+            cy.get(".MuiCardHeader-root").eq(1).find("svg[data-testid='PlaylistAddCheckIcon']").should("exist");
+        });
+        it("should movie card selected to watch list and favorites shows both avatars", () => {
+            cy.get(".MuiCardHeader-root").eq(1).find("svg[data-testid='FavoriteIcon']").should("not.exist");
+            cy.get(".MuiCardHeader-root").eq(1).find("svg[data-testid='PlaylistAddCheckIcon']").should("not.exist");
+            cy.get("button[aria-label='add to favorites']").eq(1).click();
+            cy.get("button[aria-label='add to watch']").eq(1).click();
+            cy.get(".MuiCardHeader-root").eq(1).find("svg[data-testid='FavoriteIcon']").should("exist");
+            cy.get(".MuiCardHeader-root").eq(1).find("svg[data-testid='PlaylistAddCheckIcon']").should("exist");
+        });
+    });
+
     describe("The upcoming movie details page", () => {
         before(() => {
             cy.request(
