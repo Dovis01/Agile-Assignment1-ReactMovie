@@ -1,20 +1,22 @@
 import React, {useState} from "react";
-import { getMovies } from "../api/tmdb-api";
+import {getMovies} from "../api/tmdb-api";
 import PageTemplate from '../components/templateMovieListPage';
-import { useQuery } from 'react-query';
+import {useQuery} from 'react-query';
 import Spinner from '../components/spinner';
-import AddToFavoritesIcon from '../components/cardIconAndAvatar/icons/addToFavorites'
 import AvatarFavoriteCheck from '../components/cardIconAndAvatar/avatar/favoritesCheck'
+import AvatarToWatchListCheck from "../components/cardIconAndAvatar/avatar/toWatchListCheck";
+import AddToFavorites from "../components/cardIconAndAvatar/icons/addToFavorites";
+import AddToWatchList from "../components/cardIconAndAvatar/icons/addToWatchList";
 
 const HomePage = () => {
     const [currentPage, setCurrentPage] = useState(1);
-    const {  data, error, isLoading, isError }  = useQuery(
-        ['discover',{page:currentPage}],
+    const {data, error, isLoading, isError} = useQuery(
+        ['discover', {page: currentPage}],
         getMovies
     )
 
     if (isLoading) {
-        return <Spinner />
+        return <Spinner/>
     }
 
     if (isError) {
@@ -37,10 +39,20 @@ const HomePage = () => {
                 setCurrentPage(value);
             }}
             action={(movie) => {
-                return <AddToFavoritesIcon movie={movie} />
+                return (
+                    <>
+                        <AddToFavorites movie={movie}/>
+                        <AddToWatchList movie={movie}/>
+                    </>
+                );
             }}
             avatarCheck={(movie) => {
-                return <AvatarFavoriteCheck movie={movie} />
+                return (
+                    <>
+                        <AvatarFavoriteCheck movie={movie}/>
+                        <AvatarToWatchListCheck movie={movie}/>
+                    </>
+                );
             }}
         />
     );
