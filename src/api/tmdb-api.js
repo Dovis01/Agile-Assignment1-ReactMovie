@@ -115,6 +115,31 @@ export const getUpcomingMovies = (args) => {
     });
 };
 
+export const getWeekTrendingMovies = (args) => {
+    const [, pagePart] = args.queryKey;
+    const { page } = pagePart;
+    return fetch(
+        `https://api.themoviedb.org/3/trending/movie/week?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=${page}`
+    ).then( (response) => {
+        if (!response.ok) {
+            throw new Error(response.json().message);
+        }
+        return response.json();
+
+    }).then((data) =>{
+        const movies = data.results;
+        const pageFirst = data.page;
+        return {
+            page: pageFirst,
+            results: movies,
+            total_results: 10000,
+            total_pages: 500
+        };
+    }).catch((error) => {
+        throw error
+    });
+};
+
 export const getMovieVideos = ({queryKey}) => {
     const [, idPart] = queryKey;
     const {id} = idPart;
