@@ -65,9 +65,7 @@ auto_deploy:
     - echo "Deploying to GitHub Pages"
     - git config --global user.email "20104636@mail.wit.ie"
     - git config --global user.name "Shijin Zhang"
-    - git remote add gh-pages https://${GH_TOKEN}@github.com/Dovis01/Agile-Assignment1-ReactMovie.git
-    - git checkout main
     - npm run deploy
   environment:
     name: production
-    url: https://dovis01.github.io
+    url: https://dovis01.github.io/Agile-Assignment1-ReactMovie
