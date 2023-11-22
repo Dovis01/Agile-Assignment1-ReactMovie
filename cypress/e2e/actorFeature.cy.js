@@ -67,7 +67,7 @@ describe("The actor related page tests", () => {
 
         it(" should display the actor name, known for department and overview", () => {
             cy.get("h3").contains(actor.name);
-            cy.get("p.css-ag7rrr-MuiTypography-root").contains(actor.known_for_department);
+            cy.get("p.MuiTypography-root.MuiTypography-h5").contains(actor.known_for_department);
             cy.get("h3").contains("Overview");
             cy.get("p.MuiTypography-root.MuiTypography-h6").should('contain.text', actor.biography);
         });

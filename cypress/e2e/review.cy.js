@@ -30,8 +30,8 @@ describe("The movie review feature", () => {
                     movie = movieDetails;
                 });
         });
-        it("select some movie and check its all existing brief reviews", () => {
-            cy.get('button.css-1rwt2y5-MuiButtonBase-root-MuiButton-root').eq(1).click();
+        it("select some movie and check whether existing brief reviews show", () => {
+            cy.get('button.MuiButtonBase-root.MuiButton-root.MuiButton-outlined').eq(1).click();
             cy.contains('button', 'Reviews').click();
             cy.get('tbody.MuiTableBody-root').find('tr.MuiTableRow-root').its('length').should('be.gt', 0);
         });

@@ -111,12 +111,12 @@ describe("The navigation feature test", () => {
                         cy.get("li").contains('ToWatchList').click();
                     });
                     it("navigating between the ToWatchList movies page and the movie details page via the dropdown menu and arrow icon.", () => {
-                        cy.get(".MuiCardActions-root").eq(2).contains("More Info").click({force: true});
-                        cy.url().should("include", `/movies/${upcomingMovies[5].id}`);
+                        cy.get(".MuiCardActions-root").eq(3).contains("More Info").click({force: true});
+                        cy.url().should("include", `/movies/${upcomingMovies[6].id}`);
                         cy.get("svg[data-testid='ArrowBackIcon'").click({force: true});
                         cy.url().should("include", `/movies/watchlist`);
                         cy.get("svg[data-testid='ArrowForwardIcon'").click({force: true});
-                        cy.url().should("include", `/movies/${upcomingMovies[5].id}`);
+                        cy.url().should("include", `/movies/${upcomingMovies[6].id}`);
                     });
                 }
             );
