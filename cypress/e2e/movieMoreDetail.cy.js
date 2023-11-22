@@ -90,7 +90,7 @@ describe("The movie more details test", () => {
     });
 
     it(" should display the movie related videos", () => {
-        cy.get('div.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation1.MuiCard-root.css-1b72gpx-MuiPaper-root-MuiCard-root').eq(0).should('exist').as('firstVideoBox');
+        cy.get('div[style="margin-bottom: 20px;"]').eq(0).should('exist').as('firstVideoBox');
         cy.get('@firstVideoBox').find('.MuiCardMedia-root.MuiCardMedia-media.MuiCardMedia-img').should('be.visible').and('have.attr', 'alt', 'Video Thumbnail');
         cy.get('@firstVideoBox').find('.MuiButtonBase-root.MuiCardActionArea-root').click();
         cy.get('iframe')
