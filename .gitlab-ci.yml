@@ -47,17 +47,16 @@ e2e_test:
   script:
     - echo "Run e2e tests in headless mode"
     - npx serve -s ./build  -l 3000  &
-    - npx cypress run --browser chrome
+    - npx cypress run --browser chrome --config-file cypress.config.js --spec 'cypress/e2e/**/*.cy.js'
 
 component_test:
   stage: test
-  image: cypress/browsers:latest
+  image: cypress/browsers:node16.13.0-chrome95-ff94
   only:
     - main
   script:
     - echo "Run cypress component tests in headless mode"
-    - npm install
-    - npm run cypress:components
+    - npx cypress run --config-file cypress.config.js --component-testing --spec 'cypress/component/**/*.cy.js'
 
 auto_deploy:
   stage: deploy
