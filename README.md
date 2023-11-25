@@ -36,7 +36,7 @@ Scripts listed here:
   + **Enhanced Movie Discovery**: Users can now discover movies through various filters such as genre, release year, and sorting options by popularity or rating, making it easier to find movies that match their interests.
 
 + Feature 2 - Improve movie card - Existing feature
-  + **Additional Movie Card Properties ** : Each movie card adds a property about popularity and a quick option to add the movie to the user's watchlist, including a corresponding watchlist avatar.
+  + **Additional Movie Card Properties**: Each movie card adds a property about popularity and a quick option to add the movie to the user's watchlist, including a corresponding watchlist avatar.
 
 + Feature 3 - Improve movie detail page - Existing feature
   + **Full Movie Details**: By clicking on "More Info," users can access comprehensive details about the movies, including full cast lists, preview videos of movie, and user reviews. Add the horizontal scroll bar to present the full casts and each movie actor cards  can link to the actor detail page which the url of can also change including the multiple parameters by clicking. 
