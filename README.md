@@ -192,6 +192,36 @@ Four stages in pipeline: install, build, test, deploy.
 - Develop Branch - execute Install and build jobs only.
 - Main Branch - perform Install, build, test and deploy jobs.
 
+## Source Control.
+
+#### Branch-Edit-Merge workflow
+
+1. Branches created in this project.
+
+- `main`
+- `develop`
+- `actor-list-detail-page-feature`
+- `auto-deploy`
+- `basic-ci-config`
+- `bundling-code-splitting`
+- `component-test`
+- `docs-image`
+- `fix-deploy-problem`
+- `fix-problem`
+- `improve-avatar-test`
+- `movie-more-detail-feature`
+- `movie-review-feature`
+- `movie-review-feature2`
+- `navigation-feature`
+- `new-filter-feature`
+- `pagination-component-feature`
+- `pull-req-themeFiles-3`
+- `pull-req-themefiles-2`
+- `pull-req-watchlist-1`
+- `signInUp-feature`
+- `upcoming-page-feature`
+- `week-trending-movies-feature`
+
 ## Code Splitting.
 
 + src/index.js
