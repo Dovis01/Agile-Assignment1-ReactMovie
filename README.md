@@ -202,7 +202,7 @@ Four stages in pipeline: install, build, test, deploy.
 + src/pages/signUpPage.js
 + src/components/movieDetails/index.js
 
-<img src="src/images/docs/BundlingCodeSplitting.jpg" align='left' />
+<img src="src/images/docs/BundlingCodeSplitting.jpg"/>
 
 ## Pull Requests.
 
